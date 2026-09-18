@@ -245,11 +245,7 @@ export default function ServicesSection({ onBookPackage }) {
               {/* Action Button */}
               <button
                 onClick={() => onBookPackage(pkg)}
-                className={`w-full mt-8 py-3 text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all ${
-                  pkg.recommended
-                    ? 'btn-accent'
-                    : 'btn-secondary'
-                }`}
+                className="w-full mt-8 py-3 text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all btn-secondary"
               >
                 <span>Book This Service</span>
                 <ArrowRight className="w-4 h-4" />

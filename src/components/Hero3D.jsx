@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingBag, Wrench, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
+import { ShoppingBag, Wrench, ArrowRight, ChevronDown } from 'lucide-react';
 
 export default function Hero3D({ onOpenBooking, onShopClick }) {
   const [isModelReady, setIsModelReady] = useState(false);
@@ -41,8 +41,8 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
                 // Add 90 degrees (Math.PI / 2) to rotate initial view by 90 degrees
                 const baseAngle = Math.atan2(y - ty, x - tx) + (Math.PI / 2);
                 
-                // Shift cycle upward in the hero rectangle
-                const adjustedTarget = [tx, ty, tz - 0.70];
+                // Shift cycle upward and slightly rightward so it sits cleanly above the heading
+                const adjustedTarget = [tx, ty, tz - 1.55];
 
                 initialCamRef.current = {
                   radius: radius || 1.8,
@@ -73,6 +73,7 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         ui_settings: 0,
         ui_inspector: 0,
         ui_annotations: 0,
+        ui_hint: 0,
         transparent: 1,
         dnt: 1
       });
@@ -120,14 +121,14 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden bg-white"
-      style={{ height: '100vh', minHeight: '650px' }}
+      className="hero-height relative w-full overflow-hidden bg-white min-h-[650px]"
     >
       {/* Sketchfab 3D Bicycle Model Background Canvas (Full Vibrant Colors & Larger Scale) */}
       <div
         className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000"
         style={{
           opacity: isModelReady ? 1 : 0.4,
+          transform: 'translateY(-10%)',
         }}
       >
         <iframe
@@ -138,7 +139,6 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
           execution-while-out-of-viewport="true"
           execution-while-not-rendered="true"
           web-share="true"
-
         />
       </div>
 
@@ -153,15 +153,11 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-xl space-y-6">
             
-            {/* Tag Badge */}
+            {/* Heading matching exact two-line design from reference screenshot */}
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider text-black uppercase bg-zinc-100 border border-zinc-300 backdrop-blur-md">
-                <RotateCcw className="w-3.5 h-3.5 text-black animate-spin-slow" />
-                <span>Scroll to rotate 3D Cycle</span>
-              </div>
-
               <h1 className="font-heading font-black text-5xl sm:text-6xl xl:text-7xl tracking-tight leading-[1.05] text-black">
-                LS <span className="gradient-text">CYCLE STORE</span>
+                LS CYCLE<br />
+                <span className="gradient-text">STORE</span>
               </h1>
               <p className="font-heading font-semibold text-sm tracking-widest uppercase text-zinc-600">
                 LAKSHMI SRINIVASA CYCLE STORE

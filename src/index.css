@@ -16,6 +16,19 @@
   --font-body: 'Space Grotesk', sans-serif;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  /* Prevent font size inflation on mobile browsers */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   background-color: #ffffff;
@@ -71,11 +84,13 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Clean Monochrome Metallic Text Gradient */
+/* Clean Monochrome Metallic Text Gradient — cross-browser */
 .gradient-text {
   background: linear-gradient(135deg, #000000 0%, #3f3f46 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Buttons System */
@@ -181,6 +196,19 @@ body {
 
 .animate-spin-slow {
   animation: spinSlow 12s linear infinite;
+}
+
+/* Hero section fixed height — cross-browser consistent */
+/* dvh = dynamic viewport height (Safari iOS 15+), falls back to svh then vh */
+.hero-height {
+  height: 100vh;
+  height: 100svh;
+}
+
+@supports (height: 100dvh) {
+  .hero-height {
+    height: 100dvh;
+  }
 }
 
 /* Print Styles */
