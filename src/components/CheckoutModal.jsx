@@ -6,7 +6,7 @@ import { X, CreditCard, QrCode, Truck, CheckCircle2, Printer, Bike, Loader2 } fr
 const RAZORPAY_KEY_ID = 'rzp_test_YourKeyHere'; // ← Paste your Razorpay Key ID here
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WHATSAPP_NUMBER = '919263211963'; // LS Cycle Store WhatsApp
+const WHATSAPP_NUMBER = '919263211969'; // LS Cycle Store WhatsApp
 
 function sendWhatsApp(orderId, shipping, paymentMethod, totalAmount, cartItems, paymentStatus) {
   const itemsSummary = cartItems && cartItems.length > 0
