@@ -195,15 +195,6 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         </div>
       </div>
 
-      {/* Top Right Live Indicator */}
-      <div className="absolute top-24 right-6 z-[3] pointer-events-none hidden sm:block">
-        <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/90 border border-zinc-200 shadow-sm backdrop-blur-md">
-          <div className="w-2 h-2 rounded-full bg-black animate-pulse" />
-          <div className="text-[11px] font-semibold text-zinc-800">
-            {isModelReady ? 'Kona 3D Model Synchronized' : 'Loading Kona 3D Model...'}
-          </div>
-        </div>
-      </div>
 
       {/* Bottom Scroll Indicator - hidden on small mobile to prevent overlapping buttons */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[3] hidden sm:flex flex-col items-center gap-1.5 pointer-events-none opacity-80">
