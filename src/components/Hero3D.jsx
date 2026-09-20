@@ -74,6 +74,9 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         ui_inspector: 0,
         ui_annotations: 0,
         ui_hint: 0,
+        ui_general_controls: 0,
+        ui_loading: 0,
+        ui_fadeout: 0,
         transparent: 1,
         dnt: 1
       });
@@ -125,7 +128,7 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
     >
       {/* Sketchfab 3D Bicycle Model Background Canvas (Full Vibrant Colors & Larger Scale) */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 -translate-y-20 sm:translate-y-[-10%]"
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden transition-opacity duration-1000 -translate-y-20 sm:translate-y-[-10%]"
         style={{
           opacity: isModelReady ? 1 : 0.4,
         }}
@@ -133,8 +136,8 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         <iframe
           ref={iframeRef}
           title="Kona 3D Model"
-          src="https://sketchfab.com/models/ba4ac6e4deb34b369286f62b7c559d8f/embed?autostart=1&ui_controls=0&ui_infos=0&ui_watermark=0&ui_stop=0&ui_ar=0&ui_help=0&ui_settings=0&ui_inspector=0&ui_annotations=0&ui_hint=0&transparent=1"
-          className="w-full h-full border-0"
+          src="https://sketchfab.com/models/ba4ac6e4deb34b369286f62b7c559d8f/embed?autostart=1&ui_controls=0&ui_infos=0&ui_watermark=0&ui_stop=0&ui_ar=0&ui_help=0&ui_settings=0&ui_inspector=0&ui_annotations=0&ui_hint=0&ui_general_controls=0&ui_loading=0&ui_fadeout=0&transparent=1"
+          className="w-[108%] h-[108%] -translate-x-[4%] -translate-y-[4%] border-0"
           allow="autoplay; fullscreen; xr-spatial-tracking"
           execution-while-out-of-viewport="true"
           execution-while-not-rendered="true"
