@@ -133,6 +133,7 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         <iframe
           ref={iframeRef}
           title="Kona 3D Model"
+          src="https://sketchfab.com/models/ba4ac6e4deb34b369286f62b7c559d8f/embed?autostart=1&ui_controls=0&ui_infos=0&ui_watermark=0&ui_stop=0&ui_ar=0&ui_help=0&ui_settings=0&ui_inspector=0&ui_annotations=0&ui_hint=0&transparent=1"
           className="w-full h-full border-0"
           allow="autoplay; fullscreen; xr-spatial-tracking"
           execution-while-out-of-viewport="true"
