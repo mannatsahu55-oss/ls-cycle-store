@@ -150,7 +150,7 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
 
       {/* Main Hero Overlay Content */}
       <div
-        className="absolute inset-0 z-[2] flex flex-col justify-end pointer-events-none pb-8 sm:pb-[clamp(48px,8vh,100px)]"
+        className="absolute inset-0 z-[2] flex flex-col justify-end pointer-events-none pb-12 sm:pb-[clamp(48px,8vh,100px)]"
       >
         <div className="container mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-xl space-y-3 sm:space-y-6">

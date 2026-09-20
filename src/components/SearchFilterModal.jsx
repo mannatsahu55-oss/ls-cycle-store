@@ -88,30 +88,20 @@ export default function SearchFilterModal({ onAddToCart, onSelectBike }) {
   return (
     <>
       {/* Floating Bottom-Right Search Button */}
-      <div className="fixed bottom-6 right-6 z-40 sm:bottom-8 sm:right-8">
+      <div className="fixed bottom-4 right-4 z-40 sm:bottom-8 sm:right-8">
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-3 bg-black hover:bg-zinc-800 text-white pl-4 pr-5 py-3.5 rounded-full shadow-2xl hover:shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition-all duration-300 active:scale-95 border border-zinc-700/50 cursor-pointer"
+          className="group relative flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-3 sm:pl-4 sm:pr-5 sm:py-3.5 bg-black hover:bg-zinc-800 text-white rounded-full shadow-2xl hover:shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition-all duration-300 active:scale-95 border border-zinc-700/60 cursor-pointer"
           aria-label="Open Search and Filter"
         >
-          {/* Animated pulse ring */}
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white"></span>
-          </span>
-
-          <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-            <Search className="w-4 h-4 text-white" />
+          <div className="w-5 h-5 sm:w-8 sm:h-8 sm:rounded-full sm:bg-white/10 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+            <Search className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
           </div>
 
-          <div className="flex flex-col text-left">
+          <div className="hidden sm:flex flex-col text-left">
             <span className="text-xs font-black tracking-wide uppercase">Search</span>
             <span className="text-[10px] text-zinc-300 font-medium">Filter Cycles</span>
           </div>
-
-          {hasActiveFilters && (
-            <span className="ml-1 w-2 h-2 rounded-full bg-cyan-400" title="Filters active" />
-          )}
         </button>
       </div>
 
