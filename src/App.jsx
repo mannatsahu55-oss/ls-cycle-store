@@ -10,6 +10,7 @@ import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
 import ServiceBookingModal from './components/ServiceBookingModal';
 import ToastNotification from './components/ToastNotification';
+import SearchFilterModal from './components/SearchFilterModal';
 import Footer from './components/Footer';
 import './index.css';
 
@@ -159,6 +160,12 @@ export default function App() {
       <ToastNotification
         message={toastMessage}
         onClose={() => setToastMessage('')}
+      />
+
+      {/* Floating Bottom-Right Search & Filter Button with Modal */}
+      <SearchFilterModal
+        onAddToCart={handleAddToCart}
+        onSelectBike={(bike) => setSelectedBikeForModal(bike)}
       />
     </div>
   );
