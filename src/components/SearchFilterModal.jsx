@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, X, SlidersHorizontal, ArrowRight, ShoppingBag, Eye, Star, RotateCcw } from 'lucide-react';
+import { Search, X, SlidersHorizontal, ArrowRight, ShoppingBag, Eye, Star, RotateCcw, ChevronDown, ChevronUp } from 'lucide-react';
 import { CYCLES_DATA } from '../data/mockData';
 
 export default function SearchFilterModal({ onAddToCart, onSelectBike }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFiltersExpanded, setIsFiltersExpanded] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all'); // 'all', 'kids', 'ranger', 'gear', 'racing'
   const [maxPrice, setMaxPrice] = useState(200000);
@@ -187,107 +188,145 @@ export default function SearchFilterModal({ onAddToCart, onSelectBike }) {
                 )}
               </div>
 
-              {/* 2. Filter Section */}
-              <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-4 sm:p-5 space-y-5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-600">
-                    <SlidersHorizontal className="w-4 h-4 text-black" />
-                    <span>Filter By</span>
-                  </div>
-                  <span className="text-xs text-zinc-500 font-medium">
-                    Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'cycle' : 'cycles'}
-                  </span>
-                </div>
-
-                {/* Filter 1: Price in Range */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-black uppercase tracking-wide">
-                      1. Price in Range
-                    </label>
-                    <span className="text-xs sm:text-sm font-black text-black bg-white px-3 py-1 rounded-lg border border-zinc-200 shadow-xs">
-                      ₹{minPrice.toLocaleString('en-IN')} – ₹{maxPrice.toLocaleString('en-IN')}
+              {/* 2. Filter Section (Collapsible & Expandable on Click) */}
+              <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl overflow-hidden transition-all duration-300">
+                {/* Clickable Filter Header Bar */}
+                <button
+                  type="button"
+                  onClick={() => setIsFiltersExpanded((prev) => !prev)}
+                  className="w-full p-4 sm:p-4.5 flex items-center justify-between text-left hover:bg-zinc-100/70 transition-colors cursor-pointer"
+                  aria-expanded={isFiltersExpanded}
+                  title={isFiltersExpanded ? "Click to minimize filter options" : "Click to expand filter options"}
+                >
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <div className="w-7 h-7 rounded-lg bg-black text-white flex items-center justify-center shadow-xs">
+                      <SlidersHorizontal className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-wider text-black">
+                      Filter Options
                     </span>
+
+                    {/* Summary chips visible when minimized */}
+                    {!isFiltersExpanded && (
+                      <div className="flex items-center gap-1.5 ml-1">
+                        <span className="text-[10px] font-bold bg-white text-zinc-800 border border-zinc-200 px-2 py-0.5 rounded-md">
+                          ₹{minPrice.toLocaleString('en-IN')} - ₹{maxPrice.toLocaleString('en-IN')}
+                        </span>
+                        <span className="text-[10px] font-bold bg-black text-white px-2 py-0.5 rounded-md">
+                          {cycleTypes.find((t) => t.id === selectedType)?.label || 'All Cycles'}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Range Slider */}
-                  <div className="space-y-1 pt-1">
-                    <input
-                      type="range"
-                      min="5000"
-                      max="200000"
-                      step="5000"
-                      value={maxPrice}
-                      onChange={(e) => setMaxPrice(Number(e.target.value))}
-                      className="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-black"
-                    />
-                    <div className="flex justify-between text-[10px] text-zinc-400 font-semibold px-0.5">
-                      <span>₹5,000</span>
-                      <span>₹50,000</span>
-                      <span>₹1,00,000</span>
-                      <span>₹1,50,000</span>
-                      <span>₹2,00,000</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-zinc-500 font-semibold hidden sm:inline">
+                      {filteredProducts.length} {filteredProducts.length === 1 ? 'cycle' : 'cycles'}
+                    </span>
+                    <div className="flex items-center gap-1 text-xs font-bold text-zinc-700 bg-white border border-zinc-200 px-2.5 py-1 rounded-xl shadow-2xs">
+                      <span>{isFiltersExpanded ? 'Minimize' : 'Expand'}</span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                          isFiltersExpanded ? 'rotate-180 text-black' : 'text-zinc-500'
+                        }`}
+                      />
                     </div>
                   </div>
+                </button>
 
-                  {/* Price Presets */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {pricePresets.map((preset) => {
-                      const isActive = minPrice === preset.min && maxPrice === preset.max;
-                      return (
-                        <button
-                          key={preset.label}
-                          onClick={() => {
-                            setMinPrice(preset.min);
-                            setMaxPrice(preset.max);
-                          }}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                            isActive
-                              ? 'bg-black text-white shadow-xs'
-                              : 'bg-white text-zinc-600 hover:text-black hover:bg-zinc-100 border border-zinc-200'
-                          }`}
-                        >
-                          {preset.label}
-                        </button>
-                      );
-                    })}
+                {/* Collapsible Filter Body */}
+                {isFiltersExpanded && (
+                  <div className="px-4 pb-5 sm:px-5 space-y-5 border-t border-zinc-200/60 pt-4 animate-fadeIn">
+                    {/* Filter 1: Price in Range */}
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <label className="text-xs font-bold text-black uppercase tracking-wide">
+                          1. Price in Range
+                        </label>
+                        <span className="text-xs sm:text-sm font-black text-black bg-white px-3 py-1 rounded-lg border border-zinc-200 shadow-xs">
+                          ₹{minPrice.toLocaleString('en-IN')} – ₹{maxPrice.toLocaleString('en-IN')}
+                        </span>
+                      </div>
+
+                      {/* Range Slider */}
+                      <div className="space-y-1 pt-1">
+                        <input
+                          type="range"
+                          min="5000"
+                          max="200000"
+                          step="5000"
+                          value={maxPrice}
+                          onChange={(e) => setMaxPrice(Number(e.target.value))}
+                          className="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-black"
+                        />
+                        <div className="flex justify-between text-[10px] text-zinc-400 font-semibold px-0.5">
+                          <span>₹5,000</span>
+                          <span>₹50,000</span>
+                          <span>₹1,00,000</span>
+                          <span>₹1,50,000</span>
+                          <span>₹2,00,000</span>
+                        </div>
+                      </div>
+
+                      {/* Price Presets */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {pricePresets.map((preset) => {
+                          const isActive = minPrice === preset.min && maxPrice === preset.max;
+                          return (
+                            <button
+                              key={preset.label}
+                              onClick={() => {
+                                setMinPrice(preset.min);
+                                setMaxPrice(preset.max);
+                              }}
+                              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                                isActive
+                                  ? 'bg-black text-white shadow-xs'
+                                  : 'bg-white text-zinc-600 hover:text-black hover:bg-zinc-100 border border-zinc-200'
+                              }`}
+                            >
+                              {preset.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-zinc-200/80" />
+
+                    {/* Filter 2: Cycle Type */}
+                    <div className="space-y-3">
+                      <label className="text-xs font-bold text-black uppercase tracking-wide block">
+                        2. Cycle Type
+                      </label>
+                      
+                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                        {cycleTypes.map((type) => {
+                          const isSelected = selectedType === type.id;
+                          return (
+                            <button
+                              key={type.id}
+                              onClick={() => setSelectedType(type.id)}
+                              className={`p-3 rounded-xl text-left transition-all flex flex-col justify-between border cursor-pointer ${
+                                isSelected
+                                  ? 'bg-black text-white border-black shadow-md'
+                                  : 'bg-white text-zinc-800 hover:bg-zinc-100 border-zinc-200 hover:border-zinc-300'
+                              }`}
+                            >
+                              <span className="text-xs font-black tracking-tight">{type.label}</span>
+                              {type.desc && (
+                                <span className={`text-[10px] mt-1 font-medium ${isSelected ? 'text-zinc-300' : 'text-zinc-500'}`}>
+                                  {type.desc}
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-zinc-200/80" />
-
-                {/* Filter 2: Cycle Type */}
-                <div className="space-y-3">
-                  <label className="text-xs font-bold text-black uppercase tracking-wide block">
-                    2. Cycle Type
-                  </label>
-                  
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                    {cycleTypes.map((type) => {
-                      const isSelected = selectedType === type.id;
-                      return (
-                        <button
-                          key={type.id}
-                          onClick={() => setSelectedType(type.id)}
-                          className={`p-3 rounded-xl text-left transition-all flex flex-col justify-between border cursor-pointer ${
-                            isSelected
-                              ? 'bg-black text-white border-black shadow-md'
-                              : 'bg-white text-zinc-800 hover:bg-zinc-100 border-zinc-200 hover:border-zinc-300'
-                          }`}
-                        >
-                          <span className="text-xs font-black tracking-tight">{type.label}</span>
-                          {type.desc && (
-                            <span className={`text-[10px] mt-1 font-medium ${isSelected ? 'text-zinc-300' : 'text-zinc-500'}`}>
-                              {type.desc}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
+                )}
               </div>
 
               {/* 3. Products Results Section */}
