@@ -121,14 +121,13 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
   return (
     <section
       id="hero"
-      className="hero-height relative w-full overflow-hidden bg-white min-h-[650px]"
+      className="hero-height relative w-full overflow-hidden bg-white min-h-[580px] sm:min-h-[650px]"
     >
       {/* Sketchfab 3D Bicycle Model Background Canvas (Full Vibrant Colors & Larger Scale) */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000"
+        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 -translate-y-20 sm:translate-y-[-10%]"
         style={{
           opacity: isModelReady ? 1 : 0.4,
-          transform: 'translateY(-10%)',
         }}
       >
         <iframe
@@ -143,37 +142,36 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
       </div>
 
       {/* Subtle Bottom & Edge Vignette to keep text readable without washing out model colors */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-white via-transparent to-transparent opacity-80 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-white via-white/40 to-transparent sm:via-transparent opacity-90 sm:opacity-80 pointer-events-none" />
 
       {/* Main Hero Overlay Content */}
       <div
-        className="absolute inset-0 z-[2] flex flex-col justify-end pointer-events-none"
-        style={{ paddingBottom: 'clamp(48px, 8vh, 100px)' }}
+        className="absolute inset-0 z-[2] flex flex-col justify-end pointer-events-none pb-8 sm:pb-[clamp(48px,8vh,100px)]"
       >
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-xl space-y-6">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="max-w-xl space-y-3 sm:space-y-6">
             
             {/* Heading matching exact two-line design from reference screenshot */}
-            <div className="space-y-3">
-              <h1 className="font-heading font-black text-5xl sm:text-6xl xl:text-7xl tracking-tight leading-[1.05] text-black">
+            <div className="space-y-1.5 sm:space-y-3">
+              <h1 className="font-heading font-black text-3xl sm:text-6xl xl:text-7xl tracking-tight leading-[1.05] text-black">
                 LS CYCLE<br />
                 <span className="gradient-text">STORE</span>
               </h1>
-              <p className="font-heading font-semibold text-sm tracking-widest uppercase text-zinc-600">
+              <p className="font-heading font-semibold text-[10px] sm:text-sm tracking-wider sm:tracking-widest uppercase text-zinc-600">
                 LAKSHMI SRINIVASA CYCLE STORE
               </p>
             </div>
 
-            <p className="text-zinc-700 text-base leading-relaxed max-w-md font-normal">
+            <p className="text-zinc-600 sm:text-zinc-700 text-xs sm:text-base leading-relaxed max-w-md font-normal">
               Precision engineered Kona 3D model. Scroll down to continuously rotate the cycle in full 360°.
             </p>
 
             {/* Action CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2 pointer-events-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 pt-1 sm:pt-2 pointer-events-auto">
               <a
                 href="#cycles"
                 onClick={onShopClick}
-                className="btn-primary py-4 px-8 text-sm rounded-xl shadow-lg flex items-center gap-2"
+                className="btn-primary py-3 sm:py-4 px-6 sm:px-8 text-xs sm:text-sm rounded-xl shadow-lg flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Explore Cycles</span>
@@ -182,7 +180,7 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
 
               <button
                 onClick={onOpenBooking}
-                className="btn-secondary py-4 px-8 text-sm rounded-xl flex items-center gap-2"
+                className="btn-secondary py-3 sm:py-4 px-6 sm:px-8 text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2"
               >
                 <Wrench className="w-4 h-4" />
                 <span>Book a Service</span>
@@ -203,8 +201,8 @@ export default function Hero3D({ onOpenBooking, onShopClick }) {
         </div>
       </div>
 
-      {/* Bottom Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[3] flex flex-col items-center gap-1.5 pointer-events-none opacity-80">
+      {/* Bottom Scroll Indicator - hidden on small mobile to prevent overlapping buttons */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[3] hidden sm:flex flex-col items-center gap-1.5 pointer-events-none opacity-80">
         <span className="text-[10px] font-bold uppercase tracking-[3px] text-zinc-600">
           Scroll Down To Rotate
         </span>
