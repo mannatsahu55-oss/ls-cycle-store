@@ -87,20 +87,16 @@ export default function SearchFilterModal({ onAddToCart, onSelectBike }) {
 
   return (
     <>
-      {/* Floating Bottom-Right Search Button */}
-      <div className="fixed bottom-4 right-4 z-40 sm:bottom-8 sm:right-8">
+      {/* Floating Bottom-Right Search Button (Consistent Circular FAB across all screen sizes) */}
+      <div className="fixed bottom-4 right-4 z-40 sm:bottom-6 sm:right-6">
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:gap-3 sm:pl-4 sm:pr-5 sm:py-3.5 bg-black hover:bg-zinc-800 text-white rounded-full shadow-2xl hover:shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition-all duration-300 active:scale-95 border border-zinc-700/60 cursor-pointer"
+          className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-black hover:bg-zinc-800 text-white rounded-full shadow-2xl hover:shadow-[0_10px_25px_rgba(0,0,0,0.35)] transition-all duration-300 active:scale-95 border border-zinc-700/60 hover:scale-105 cursor-pointer"
           aria-label="Open Search and Filter"
+          title="Search & Filter Cycles"
         >
-          <div className="w-5 h-5 sm:w-8 sm:h-8 sm:rounded-full sm:bg-white/10 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-            <Search className="w-5 h-5 sm:w-4 sm:h-4 text-white" />
-          </div>
-
-          <div className="hidden sm:flex flex-col text-left">
-            <span className="text-xs font-black tracking-wide uppercase">Search</span>
-            <span className="text-[10px] text-zinc-300 font-medium">Filter Cycles</span>
+          <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+            <Search className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
         </button>
       </div>
