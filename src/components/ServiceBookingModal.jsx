@@ -37,12 +37,13 @@ export default function ServiceBookingModal({ isOpen, onClose, selectedPackage, 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg glass-panel border-zinc-200 rounded-3xl overflow-hidden p-6 sm:p-8 shadow-2xl bg-white">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg border border-zinc-200 rounded-2xl sm:rounded-3xl overflow-hidden p-4 sm:p-8 shadow-2xl bg-white max-h-[92vh] sm:max-h-[90vh] overflow-y-auto">
         
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600 hover:text-black hover:bg-zinc-200"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600 hover:text-black hover:bg-zinc-200 transition-colors shadow-sm"
+          aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>

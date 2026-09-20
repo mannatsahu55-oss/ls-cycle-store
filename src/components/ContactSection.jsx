@@ -147,28 +147,28 @@ export default function ContactSection({ onShowToast }) {
 
           {/* Right 7 Cols: Repair Drop-off Booking Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel p-8 sm:p-10 rounded-3xl border-zinc-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-200">
+            <div className="border border-zinc-200 p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-white shadow-sm">
+              <div className="flex items-center justify-between mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-zinc-200">
                 <div>
-                  <h3 className="font-heading font-black text-2xl text-black">
+                  <h3 className="font-heading font-black text-xl sm:text-2xl text-black">
                     REPAIR DROP-OFF BOOKING
                   </h3>
-                  <p className="text-zinc-600 text-xs mt-1">
+                  <p className="text-zinc-600 text-xs mt-0.5 sm:mt-1">
                     Select your preferred date & service package for immediate intake.
                   </p>
                 </div>
-                <Wrench className="w-8 h-8 text-black opacity-30" />
+                <Wrench className="w-6 h-6 sm:w-8 sm:h-8 text-black opacity-30 shrink-0" />
               </div>
 
               {submitted ? (
-                <div className="py-12 text-center space-y-4 animate-in zoom-in-95 duration-300">
-                  <div className="w-16 h-16 rounded-full bg-black text-white mx-auto flex items-center justify-center shadow-md">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="py-8 sm:py-12 text-center space-y-4 animate-in zoom-in-95 duration-300">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black text-white mx-auto flex items-center justify-center shadow-md">
+                    <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" />
                   </div>
-                  <h4 className="font-heading font-bold text-2xl text-black">
+                  <h4 className="font-heading font-bold text-xl sm:text-2xl text-black">
                     Booking Confirmed!
                   </h4>
-                  <p className="text-zinc-700 text-sm max-w-md mx-auto">
+                  <p className="text-zinc-700 text-xs sm:text-sm max-w-md mx-auto">
                     Thank you <strong className="text-black">{formData.name}</strong>. Your repair drop-off slot is reserved for <strong className="text-black">{formData.date || 'Tomorrow'}</strong>. Reference Token: <span className="text-black font-mono font-bold">LS-REPAIR-{Math.floor(1000 + Math.random() * 9000)}</span>
                   </p>
                   <button
@@ -179,40 +179,40 @@ export default function ContactSection({ onShowToast }) {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Your Full Name *</label>
+                      <label className="text-xs font-bold text-zinc-700 mb-1 block">Your Full Name *</label>
                       <input
                         type="text"
                         required
                         placeholder="e.g. Rahul Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none transition-colors"
+                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Mobile Phone Number *</label>
+                      <label className="text-xs font-bold text-zinc-700 mb-1 block">Mobile Phone Number *</label>
                       <input
                         type="tel"
                         required
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none transition-colors"
+                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Cycle Type *</label>
+                      <label className="text-xs font-bold text-zinc-700 mb-1 block">Cycle Type *</label>
                       <select
                         value={formData.cycleType}
                         onChange={(e) => setFormData({ ...formData, cycleType: e.target.value })}
-                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none cursor-pointer transition-colors font-medium"
+                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none cursor-pointer transition-colors font-medium truncate"
                       >
                         <option value="Gear Cycle">Gear Cycle</option>
                         <option value="Normal Cycle">Normal Cycle</option>
@@ -220,49 +220,49 @@ export default function ContactSection({ onShowToast }) {
                     </div>
 
                     <div>
-                      <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Preferred Drop-Off Date *</label>
+                      <label className="text-xs font-bold text-zinc-700 mb-1 block">Preferred Drop-Off Date *</label>
                       <input
                         type="date"
                         required
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none transition-colors"
+                        className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Select Service Package *</label>
+                    <label className="text-xs font-bold text-zinc-700 mb-1 block">Select Service Package *</label>
                     <select
                       value={formData.serviceType}
                       onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none cursor-pointer transition-colors"
+                      className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none cursor-pointer transition-colors truncate"
                     >
-                      <option value="Basic Safety Check">Basic Safety Check & Polish (₹499)</option>
-                      <option value="Pro Tune-Up">Pro Tune-Up & Drivetrain Wash (₹1,499)</option>
-                      <option value="Master Overhaul">Master Overhaul & Bearing Repack (₹2,999)</option>
-                      <option value="E-Bike Diagnostics">E-Bike Diagnostics & Health Check (₹1,999)</option>
+                      <option value="Basic Safety Check">Basic Safety Check (₹499)</option>
+                      <option value="Pro Tune-Up">Pro Tune-Up (₹1,499)</option>
+                      <option value="Master Overhaul">Master Overhaul (₹2,999)</option>
+                      <option value="E-Bike Diagnostics">E-Bike Diagnostics (₹1,999)</option>
                       <option value="Custom Repair">Custom Repair / Specific Issue</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-zinc-700 mb-1.5 block">Issue Description or Special Requests</label>
+                    <label className="text-xs font-bold text-zinc-700 mb-1 block">Issue Description or Special Requests</label>
                     <textarea
                       rows={3}
                       placeholder="Describe any squeaks, gear slipping, brake bleeding requests, etc..."
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-4 py-3 text-sm text-black focus:outline-none transition-colors"
+                      className="w-full bg-zinc-50 border border-zinc-200 focus:border-black rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-black focus:outline-none transition-colors resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="btn-primary w-full py-4 text-sm rounded-xl flex items-center justify-center gap-2 mt-4"
+                    className="btn-primary w-full py-3.5 sm:py-4 text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 mt-3 sm:mt-4 shadow-md"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Confirm Drop-Off Appointment</span>
+                    <Send className="w-4 h-4 shrink-0" />
+                    <span className="whitespace-nowrap">Confirm Drop-Off Appointment</span>
                   </button>
                 </form>
               )}
