@@ -126,30 +126,43 @@ export default function CycleSales({ onAddToCart, onSelectBike }) {
               </div>
 
               {/* Price & Action Footer */}
-              <div className="mt-6 pt-4 border-t border-zinc-200 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] text-zinc-500 line-through block">
-                    ₹{bike.originalPrice.toLocaleString('en-IN')}
-                  </span>
-                  <span className="font-heading font-black text-2xl text-black">
-                    ₹{bike.price.toLocaleString('en-IN')}
-                  </span>
-                </div>
+              <div className="mt-6 pt-4 border-t border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center justify-between sm:block">
+                  <div>
+                    <span className="text-[10px] text-zinc-500 line-through block">
+                      ₹{bike.originalPrice.toLocaleString('en-IN')}
+                    </span>
+                    <span className="font-heading font-black text-2xl text-black">
+                      ₹{bike.price.toLocaleString('en-IN')}
+                    </span>
+                  </div>
 
-                <div className="flex items-center gap-2">
+                  {/* On mobile, place Quick View eye button adjacent to the price in top row */}
                   <button
                     onClick={() => onSelectBike(bike)}
-                    className="p-2.5 rounded-xl bg-zinc-100 border border-zinc-200 text-black hover:bg-zinc-200 transition-all"
+                    className="sm:hidden p-2.5 rounded-xl bg-zinc-100 border border-zinc-200 text-black hover:bg-zinc-200 transition-all flex items-center gap-1.5 text-xs font-semibold"
+                    title="View Details"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>View</span>
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2 w-full sm:w-auto">
+                  {/* On tablet/desktop, keep Quick View eye button here */}
+                  <button
+                    onClick={() => onSelectBike(bike)}
+                    className="hidden sm:flex p-2.5 rounded-xl bg-zinc-100 border border-zinc-200 text-black hover:bg-zinc-200 transition-all items-center justify-center"
                     title="View Details"
                   >
                     <Eye className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => onAddToCart(bike)}
-                    className="btn-primary py-2.5 px-4 text-xs rounded-xl flex items-center gap-2"
+                    className="btn-primary w-full sm:w-auto py-2.5 px-4 text-xs rounded-xl flex items-center justify-center gap-2"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Add to Cart</span>
+                    <span className="whitespace-nowrap">Add to Cart</span>
                   </button>
                 </div>
               </div>
